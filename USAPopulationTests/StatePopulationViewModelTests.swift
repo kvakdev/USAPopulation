@@ -69,7 +69,6 @@ final class StatePopulationViewModelTests: XCTestCase {
             
             await sut.onAppear()
             
-            
             XCTAssertEqual(states, [.empty, .loading, .error(AppError.network)])
         }
     }
@@ -91,8 +90,30 @@ final class StatePopulationViewModelTests: XCTestCase {
             
             await sut.onAppear()
             
-            
             XCTAssertEqual(states, [.empty, .loading, .loaded(expectedValue)])
+        }
+    }
+    
+    func test_viewModelTriggersLoad_onRetry() async throws {
+        await withMainSerialExecutor {
+            let mockAPI = StatePopulationAPIMock()
+            let expectedValue = PopulationViewModel.makeWith(remote: .testValue)
+            
+            let sut = StatePopulationViewModel(api: mockAPI)
+            var states = [ViewState<PopulationViewModel, AppError>]()
+            
+            sut.$state
+                .sink(receiveValue: { newValue in
+                states.append(newValue)
+            })
+            .store(in: &cancellables)
+            
+            await sut.onAppear()
+            XCTAssertEqual(states, [.empty, .loading, .error(.network)])
+
+            mockAPI.set(stub: .testValue)
+            await sut.handleRetry()
+            XCTAssertEqual(states, [.empty, .loading, .error(.network), .loading, .loaded(expectedValue)])
         }
     }
 }

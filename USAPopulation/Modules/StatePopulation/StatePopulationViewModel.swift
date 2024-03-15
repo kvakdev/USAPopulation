@@ -16,8 +16,17 @@ class StatePopulationViewModel: ObservableObject {
         self.state = .empty
     }
     
-    @MainActor
+    
     func onAppear() async {
+        await load()
+    }
+    
+    func handleRetry() async {
+        await load()
+    }
+    
+    @MainActor
+    private func load() async {
         state = .loading
         
         do {
