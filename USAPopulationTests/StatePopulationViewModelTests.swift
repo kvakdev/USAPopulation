@@ -7,7 +7,6 @@
 
 import XCTest
 import Combine
-import CombineSchedulers
 import ConcurrencyExtras
 
 struct Population: Equatable {}
@@ -53,13 +52,10 @@ enum AppError: Error, Equatable {
 
 class StatePopulationViewModel: ObservableObject {
     let api: StatePopulationAPIProtocol
-    
     @Published var state: ViewState<Population, AppError>
-    var scheduler: any Scheduler
     
-    init(api: StatePopulationAPIProtocol, scheduler: any Scheduler) {
+    init(api: StatePopulationAPIProtocol) {
         self.api = api
-        self.scheduler = scheduler
         self.state = .empty
     }
     
@@ -82,18 +78,17 @@ class StatePopulationViewModel: ObservableObject {
 final class StatePopulationViewModelTests: XCTestCase {
     
     var cancellables: Set<AnyCancellable> = []
-    var scheduler = TestSchedulerOf<DispatchQueue>(now: .init(.now()))
     
     func test_viewModel_doesNothing_onInit() async throws {
         let mockAPI = StatePopulationAPIMock()
-        let sut = StatePopulationViewModel(api: mockAPI, scheduler: scheduler)
+        let sut = StatePopulationViewModel(api: mockAPI)
         
         XCTAssertEqual(mockAPI.messages, [])
     }
     
     func test_viewModel_startsLoadOnAppear() async throws {
         let mockAPI = StatePopulationAPIMock()
-        let sut = StatePopulationViewModel(api: mockAPI, scheduler: scheduler)
+        let sut = StatePopulationViewModel(api: mockAPI)
         await sut.onAppear()
         
         XCTAssertEqual(mockAPI.messages, [.loadPopulation])
@@ -105,7 +100,7 @@ final class StatePopulationViewModelTests: XCTestCase {
             let stub = Population()
             mockAPI.set(stub: stub)
             
-            let sut = StatePopulationViewModel(api: mockAPI, scheduler: scheduler)
+            let sut = StatePopulationViewModel(api: mockAPI)
             var states = [ViewState<Population, AppError>]()
             
             sut.$state
