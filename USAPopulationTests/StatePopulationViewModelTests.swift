@@ -6,8 +6,9 @@
 //
 
 import XCTest
+import Combine
 
-struct Population {}
+struct Population: Equatable {}
 
 protocol StatePopulationAPIProtocol {
     func getPopulation() async throws -> Population
@@ -27,9 +28,21 @@ class StatePopulationAPIMock: StatePopulationAPIProtocol {
     }
 }
 
+enum ViewState<V: Equatable, E: Equatable>: Equatable {
+    case loading
+    case loaded(V)
+    case error(E)
+}
 
+enum AppError: Error, Equatable {
+    case network
+}
+
+@Observable
 class StatePopulationViewModel {
     let api: StatePopulationAPIProtocol
+    
+    var state: ViewState<Population, AppError>?
     
     init(api: StatePopulationAPIProtocol) {
         self.api = api
@@ -37,6 +50,7 @@ class StatePopulationViewModel {
     
     func onAppear() async {
         do {
+            state = .loading
             let population = try await self.api.getPopulation()
         } catch {
             
@@ -45,6 +59,8 @@ class StatePopulationViewModel {
 }
 
 final class StatePopulationViewModelTests: XCTestCase {
+    
+    var cancellables: [AnyCancellable] = []
     
     func test_viewModel_doesNothing_onInit() async throws {
         let mockAPI = StatePopulationAPIMock()
@@ -59,5 +75,18 @@ final class StatePopulationViewModelTests: XCTestCase {
         await sut.onAppear()
         
         XCTAssertEqual(mockAPI.messages, [.loadPopulation])
+    }
+    
+    func test_viewModel_loadIsTriggered() async throws {
+        let mockAPI = StatePopulationAPIMock()
+        let sut = StatePopulationViewModel(api: mockAPI)
+        await sut.onAppear()
+        var states = [ViewState<Population, AppError>]()
+        
+        sut.state.publisher.sink { newValue in
+            states.append(newValue)
+        }
+        
+        XCTAssertEqual(states, [.loading])
     }
 }
