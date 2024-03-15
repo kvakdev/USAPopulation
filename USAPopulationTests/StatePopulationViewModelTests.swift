@@ -10,13 +10,6 @@ import Combine
 import ConcurrencyExtras
 @testable import USAPopulation
 
-struct PopulationViewModel: Equatable {
-    let id: String
-}
-
-protocol StatePopulationAPIProtocol {
-    func getPopulation() async throws -> StatePopulation
-}
 
 class StatePopulationAPIMock: StatePopulationAPIProtocol {
     var messages: [Messages] = []
@@ -41,46 +34,6 @@ class StatePopulationAPIMock: StatePopulationAPIProtocol {
         throw AppError.network
     }
     
-}
-
-enum ViewState<V: Equatable, E: Equatable>: Equatable {
-    case loading
-    case loaded(V)
-    case error(E)
-    case empty
-}
-
-enum AppError: Error, Equatable {
-    case network
-    case decodingError
-    case unknown(String)
-}
-
-
-class StatePopulationViewModel: ObservableObject {
-    let api: StatePopulationAPIProtocol
-    @Published var state: ViewState<PopulationViewModel, AppError>
-    
-    init(api: StatePopulationAPIProtocol) {
-        self.api = api
-        self.state = .empty
-    }
-    
-    @MainActor
-    func onAppear() async {
-        state = .loading
-        
-        do {
-            let population = try await self.api.getPopulation()
-            state = .loaded(.init(id: population.id))
-        } catch let error {
-            if let err = error as? AppError {
-                state = .error(err)
-            } else {
-                state = .error(.unknown(error.localizedDescription.debugDescription))
-            }
-        }
-    }
 }
 
 final class StatePopulationViewModelTests: XCTestCase {
