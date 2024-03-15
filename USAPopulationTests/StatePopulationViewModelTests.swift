@@ -14,9 +14,9 @@ import ConcurrencyExtras
 class StatePopulationAPIMock: StatePopulationAPIProtocol {
     var messages: [Messages] = []
     
-    var stub: StatePopulation?
+    var stub: StatePopulationResponse?
     
-    func set(stub: StatePopulation) {
+    func set(stub: StatePopulationResponse) {
         self.stub = stub
     }
     
@@ -24,7 +24,7 @@ class StatePopulationAPIMock: StatePopulationAPIProtocol {
         case loadPopulation
     }
     
-    func getPopulation() async throws -> StatePopulation {
+    func getPopulation() async throws -> StatePopulationResponse {
         messages.append(.loadPopulation)
         
         if let stub = self.stub {
@@ -77,9 +77,9 @@ final class StatePopulationViewModelTests: XCTestCase {
     func test_viewModel_deliversLoadedResult() async throws {
         await withMainSerialExecutor {
             let mockAPI = StatePopulationAPIMock()
-            let stub = StatePopulation(id: "1")
-            mockAPI.set(stub: stub)
+            mockAPI.set(stub: .testValue)
             
+            let expectedValue = PopulationViewModel.makeWith(remote: .testValue)
             let sut = StatePopulationViewModel(api: mockAPI)
             var states = [ViewState<PopulationViewModel, AppError>]()
             
@@ -92,7 +92,23 @@ final class StatePopulationViewModelTests: XCTestCase {
             await sut.onAppear()
             
             
-            XCTAssertEqual(states, [.empty, .loading, .loaded(PopulationViewModel(id: stub.id))])
+            XCTAssertEqual(states, [.empty, .loading, .loaded(expectedValue)])
         }
+    }
+}
+
+extension StatePopulationResponse {
+    static var testValue: StatePopulationResponse {
+        return .init(data: [.testValue])
+    }
+}
+extension StatePopulation {
+    static var testValue: StatePopulation {
+        StatePopulation(idState: "1",
+                        state: "A",
+                        idYear: 1,
+                        year: "2024",
+                        population: 1,
+                        slugState: "A")
     }
 }

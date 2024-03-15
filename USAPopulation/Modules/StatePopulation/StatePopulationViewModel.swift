@@ -22,7 +22,7 @@ class StatePopulationViewModel: ObservableObject {
         
         do {
             let population = try await self.api.getPopulation()
-            state = .loaded(.init(id: population.id))
+            state = .loaded(.makeWith(remote: population))
         } catch let error {
             if let err = error as? AppError {
                 state = .error(err)
@@ -30,5 +30,20 @@ class StatePopulationViewModel: ObservableObject {
                 state = .error(.unknown(error.localizedDescription.debugDescription))
             }
         }
+    }
+}
+
+extension PopulationViewModel {
+    static func makeWith(remote: StatePopulationResponse) -> PopulationViewModel {
+        let items = remote.data.compactMap { oneItem in
+            OneStatePopulationViewModel(idState: oneItem.idState,
+                                        state: oneItem.state,
+                                        idYear: oneItem.idYear,
+                                        year: oneItem.year,
+                                        population: oneItem.population,
+                                        slugState: oneItem.slugState)
+        }
+        
+        return PopulationViewModel(items: items)
     }
 }

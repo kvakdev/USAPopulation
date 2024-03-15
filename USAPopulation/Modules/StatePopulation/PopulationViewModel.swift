@@ -8,5 +8,14 @@
 import Foundation
 
 struct PopulationViewModel: Equatable {
-    let id: String
+    let items: [OneStatePopulationViewModel]
+}
+
+struct OneStatePopulationViewModel: Equatable {
+    let idState: String
+    let state: String
+    let idYear: Int
+    let year: String
+    let population: Int
+    let slugState: String
 }

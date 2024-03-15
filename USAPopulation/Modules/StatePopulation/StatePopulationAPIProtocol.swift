@@ -8,5 +8,5 @@
 import Foundation
 
 protocol StatePopulationAPIProtocol {
-    func getPopulation() async throws -> StatePopulation
+    func getPopulation() async throws -> StatePopulationResponse
 }
