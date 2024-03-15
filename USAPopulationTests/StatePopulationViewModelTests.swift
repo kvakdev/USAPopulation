@@ -9,7 +9,12 @@ import XCTest
 import Combine
 import ConcurrencyExtras
 
-struct Population: Equatable {}
+struct Population: Equatable {
+    let id: String
+}
+struct PopulationViewModel: Equatable {
+    let id: String
+}
 
 protocol StatePopulationAPIProtocol {
     func getPopulation() async throws -> Population
@@ -56,7 +61,7 @@ enum AppError: Error, Equatable {
 
 class StatePopulationViewModel: ObservableObject {
     let api: StatePopulationAPIProtocol
-    @Published var state: ViewState<Population, AppError>
+    @Published var state: ViewState<PopulationViewModel, AppError>
     
     init(api: StatePopulationAPIProtocol) {
         self.api = api
@@ -69,7 +74,7 @@ class StatePopulationViewModel: ObservableObject {
         
         do {
             let population = try await self.api.getPopulation()
-            state = .loaded(population)
+            state = .loaded(.init(id: population.id))
         } catch let error {
             if let err = error as? AppError {
                 state = .error(err)
@@ -103,7 +108,7 @@ final class StatePopulationViewModelTests: XCTestCase {
         await withMainSerialExecutor {
             let mockAPI = StatePopulationAPIMock()
             let sut = StatePopulationViewModel(api: mockAPI)
-            var states = [ViewState<Population, AppError>]()
+            var states = [ViewState<PopulationViewModel, AppError>]()
             
             sut.$state
                 .sink(receiveValue: { newValue in
@@ -121,11 +126,11 @@ final class StatePopulationViewModelTests: XCTestCase {
     func test_viewModel_deliversLoadedResult() async throws {
         await withMainSerialExecutor {
             let mockAPI = StatePopulationAPIMock()
-            let stub = Population()
+            let stub = Population(id: "1")
             mockAPI.set(stub: stub)
             
             let sut = StatePopulationViewModel(api: mockAPI)
-            var states = [ViewState<Population, AppError>]()
+            var states = [ViewState<PopulationViewModel, AppError>]()
             
             sut.$state
                 .sink(receiveValue: { newValue in
@@ -136,7 +141,7 @@ final class StatePopulationViewModelTests: XCTestCase {
             await sut.onAppear()
             
             
-            XCTAssertEqual(states, [.empty, .loading, .loaded(stub)])
+            XCTAssertEqual(states, [.empty, .loading, .loaded(PopulationViewModel(id: stub.id))])
         }
     }
 }
