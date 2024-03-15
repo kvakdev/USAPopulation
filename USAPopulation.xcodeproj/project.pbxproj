@@ -19,6 +19,8 @@
 		CE76054C2BA4F3FA0055BAC1 /* PopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76054B2BA4F3FA0055BAC1 /* PopulationViewModel.swift */; };
 		CE76054E2BA4F41E0055BAC1 /* StatePopulationAPIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76054D2BA4F41E0055BAC1 /* StatePopulationAPIProtocol.swift */; };
 		CE7605502BA4F4350055BAC1 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76054F2BA4F4350055BAC1 /* AppError.swift */; };
+		CE7605522BA4FADD0055BAC1 /* StatePopulationSampleJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605512BA4FADD0055BAC1 /* StatePopulationSampleJSON.swift */; };
+		CE7605542BA4FB2B0055BAC1 /* PopulationParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605532BA4FB2B0055BAC1 /* PopulationParsingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +48,8 @@
 		CE76054B2BA4F3FA0055BAC1 /* PopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationViewModel.swift; sourceTree = "<group>"; };
 		CE76054D2BA4F41E0055BAC1 /* StatePopulationAPIProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePopulationAPIProtocol.swift; sourceTree = "<group>"; };
 		CE76054F2BA4F4350055BAC1 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		CE7605512BA4FADD0055BAC1 /* StatePopulationSampleJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePopulationSampleJSON.swift; sourceTree = "<group>"; };
+		CE7605532BA4FB2B0055BAC1 /* PopulationParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationParsingTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				CE1827822BA4C1E000C78506 /* AppDelegate.swift */,
 				CE1827842BA4C1E000C78506 /* SceneDelegate.swift */,
 				CE7605412BA4F2260055BAC1 /* Modules */,
+				CE7605482BA4F3AC0055BAC1 /* Common */,
 				CE7605452BA4F24E0055BAC1 /* Domain */,
 				CE18278B2BA4C1E200C78506 /* Assets.xcassets */,
 				CE18278D2BA4C1E200C78506 /* LaunchScreen.storyboard */,
@@ -103,6 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */,
+				CE7605532BA4FB2B0055BAC1 /* PopulationParsingTests.swift */,
+				CE7605512BA4FADD0055BAC1 /* StatePopulationSampleJSON.swift */,
 			);
 			path = USAPopulationTests;
 			sourceTree = "<group>";
@@ -110,7 +117,6 @@
 		CE7605412BA4F2260055BAC1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				CE7605482BA4F3AC0055BAC1 /* Common */,
 				CE7605422BA4F22E0055BAC1 /* StatePopulation */,
 			);
 			path = Modules;
@@ -264,6 +270,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7605542BA4FB2B0055BAC1 /* PopulationParsingTests.swift in Sources */,
+				CE7605522BA4FADD0055BAC1 /* StatePopulationSampleJSON.swift in Sources */,
 				CE1827B32BA4C47D00C78506 /* StatePopulationViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
