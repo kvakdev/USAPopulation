@@ -20,5 +20,15 @@ final class PopulationParsingTests: XCTestCase {
         XCTAssertNotNil(response)
         XCTAssertEqual(response.data.count, 52)
     }
-
+    
+    func testParsesYearlyPopulation() throws {
+        guard let sampleJSON = String.yearlyPopulationJSON.data(using: .utf8) else {
+            throw NSError(domain: "JSON Parsing Test. Unable to convert sample json", code: 1)
+        }
+        
+        let response = try JSONDecoder().decode(YearlyPopulationResponse.self, from: sampleJSON)
+        
+        XCTAssertNotNil(response)
+        XCTAssertEqual(response.data.count, 9)
+    }
 }
