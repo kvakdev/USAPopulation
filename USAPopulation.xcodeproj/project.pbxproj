@@ -12,6 +12,7 @@
 		CE18278C2BA4C1E200C78506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE18278B2BA4C1E200C78506 /* Assets.xcassets */; };
 		CE18278F2BA4C1E200C78506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE18278D2BA4C1E200C78506 /* LaunchScreen.storyboard */; };
 		CE1827B32BA4C47D00C78506 /* StatePopulationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */; };
+		CE7605402BA4E3470055BAC1 /* CombineSchedulers in Frameworks */ = {isa = PBXBuildFile; productRef = CE76053F2BA4E3470055BAC1 /* CombineSchedulers */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7605402BA4E3470055BAC1 /* CombineSchedulers in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +109,9 @@
 			dependencies = (
 			);
 			name = USAPopulation;
+			packageProductDependencies = (
+				CE76053F2BA4E3470055BAC1 /* CombineSchedulers */,
+			);
 			productName = USAPopulation;
 			productReference = CE18277F2BA4C1E000C78506 /* USAPopulation.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +162,9 @@
 				Base,
 			);
 			mainGroup = CE1827762BA4C1E000C78506;
+			packageReferences = (
+				CE76053E2BA4E3470055BAC1 /* XCRemoteSwiftPackageReference "combine-schedulers" */,
+			);
 			productRefGroup = CE1827802BA4C1E000C78506 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -470,6 +478,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE76053E2BA4E3470055BAC1 /* XCRemoteSwiftPackageReference "combine-schedulers" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/combine-schedulers#anyscheduler";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE76053F2BA4E3470055BAC1 /* CombineSchedulers */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE76053E2BA4E3470055BAC1 /* XCRemoteSwiftPackageReference "combine-schedulers" */;
+			productName = CombineSchedulers;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE1827772BA4C1E000C78506 /* Project object */;
 }
