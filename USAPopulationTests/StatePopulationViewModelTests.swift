@@ -8,24 +8,22 @@
 import XCTest
 import Combine
 import ConcurrencyExtras
+@testable import USAPopulation
 
-struct Population: Equatable {
-    let id: String
-}
 struct PopulationViewModel: Equatable {
     let id: String
 }
 
 protocol StatePopulationAPIProtocol {
-    func getPopulation() async throws -> Population
+    func getPopulation() async throws -> StatePopulation
 }
 
 class StatePopulationAPIMock: StatePopulationAPIProtocol {
     var messages: [Messages] = []
     
-    var stub: Population?
+    var stub: StatePopulation?
     
-    func set(stub: Population) {
+    func set(stub: StatePopulation) {
         self.stub = stub
     }
     
@@ -33,7 +31,7 @@ class StatePopulationAPIMock: StatePopulationAPIProtocol {
         case loadPopulation
     }
     
-    func getPopulation() async throws -> Population {
+    func getPopulation() async throws -> StatePopulation {
         messages.append(.loadPopulation)
         
         if let stub = self.stub {
@@ -126,7 +124,7 @@ final class StatePopulationViewModelTests: XCTestCase {
     func test_viewModel_deliversLoadedResult() async throws {
         await withMainSerialExecutor {
             let mockAPI = StatePopulationAPIMock()
-            let stub = Population(id: "1")
+            let stub = StatePopulation(id: "1")
             mockAPI.set(stub: stub)
             
             let sut = StatePopulationViewModel(api: mockAPI)

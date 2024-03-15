@@ -13,6 +13,8 @@
 		CE18278F2BA4C1E200C78506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE18278D2BA4C1E200C78506 /* LaunchScreen.storyboard */; };
 		CE1827B32BA4C47D00C78506 /* StatePopulationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */; };
 		CE7605402BA4E3470055BAC1 /* CombineSchedulers in Frameworks */ = {isa = PBXBuildFile; productRef = CE76053F2BA4E3470055BAC1 /* CombineSchedulers */; };
+		CE7605442BA4F2470055BAC1 /* StatePopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605432BA4F2470055BAC1 /* StatePopulationViewModel.swift */; };
+		CE7605472BA4F28F0055BAC1 /* StatePopulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605462BA4F28F0055BAC1 /* StatePopulation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,8 @@
 		CE1827902BA4C1E200C78506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE1827952BA4C1E200C78506 /* USAPopulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USAPopulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePopulationViewModelTests.swift; sourceTree = "<group>"; };
+		CE7605432BA4F2470055BAC1 /* StatePopulationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePopulationViewModel.swift; sourceTree = "<group>"; };
+		CE7605462BA4F28F0055BAC1 /* StatePopulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePopulation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 			children = (
 				CE1827822BA4C1E000C78506 /* AppDelegate.swift */,
 				CE1827842BA4C1E000C78506 /* SceneDelegate.swift */,
+				CE7605412BA4F2260055BAC1 /* Presentation */,
+				CE7605452BA4F24E0055BAC1 /* Domain */,
 				CE18278B2BA4C1E200C78506 /* Assets.xcassets */,
 				CE18278D2BA4C1E200C78506 /* LaunchScreen.storyboard */,
 				CE1827902BA4C1E200C78506 /* Info.plist */,
@@ -91,6 +97,30 @@
 				CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */,
 			);
 			path = USAPopulationTests;
+			sourceTree = "<group>";
+		};
+		CE7605412BA4F2260055BAC1 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CE7605422BA4F22E0055BAC1 /* StatePopulation */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CE7605422BA4F22E0055BAC1 /* StatePopulation */ = {
+			isa = PBXGroup;
+			children = (
+				CE7605432BA4F2470055BAC1 /* StatePopulationViewModel.swift */,
+			);
+			path = StatePopulation;
+			sourceTree = "<group>";
+		};
+		CE7605452BA4F24E0055BAC1 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				CE7605462BA4F28F0055BAC1 /* StatePopulation.swift */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +229,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7605472BA4F28F0055BAC1 /* StatePopulation.swift in Sources */,
+				CE7605442BA4F2470055BAC1 /* StatePopulationViewModel.swift in Sources */,
 				CE1827832BA4C1E000C78506 /* AppDelegate.swift in Sources */,
 				CE1827852BA4C1E000C78506 /* SceneDelegate.swift in Sources */,
 			);
