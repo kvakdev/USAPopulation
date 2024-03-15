@@ -11,7 +11,6 @@
 		CE1827852BA4C1E000C78506 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1827842BA4C1E000C78506 /* SceneDelegate.swift */; };
 		CE18278C2BA4C1E200C78506 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE18278B2BA4C1E200C78506 /* Assets.xcassets */; };
 		CE18278F2BA4C1E200C78506 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE18278D2BA4C1E200C78506 /* LaunchScreen.storyboard */; };
-		CE18279A2BA4C1E200C78506 /* USAPopulationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1827992BA4C1E200C78506 /* USAPopulationTests.swift */; };
 		CE1827B32BA4C47D00C78506 /* StatePopulationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +32,6 @@
 		CE18278E2BA4C1E200C78506 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE1827902BA4C1E200C78506 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE1827952BA4C1E200C78506 /* USAPopulationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USAPopulationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE1827992BA4C1E200C78506 /* USAPopulationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USAPopulationTests.swift; sourceTree = "<group>"; };
 		CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePopulationViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,7 +86,6 @@
 		CE1827982BA4C1E200C78506 /* USAPopulationTests */ = {
 			isa = PBXGroup;
 			children = (
-				CE1827992BA4C1E200C78506 /* USAPopulationTests.swift */,
 				CE1827B22BA4C47D00C78506 /* StatePopulationViewModelTests.swift */,
 			);
 			path = USAPopulationTests;
@@ -203,7 +200,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE18279A2BA4C1E200C78506 /* USAPopulationTests.swift in Sources */,
 				CE1827B32BA4C47D00C78506 /* StatePopulationViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
