@@ -99,11 +99,9 @@ final class StatePopulationViewModelTests: XCTestCase {
         XCTAssertEqual(mockAPI.messages, [.loadPopulation])
     }
     
-    func test_viewModel_loadIsTriggered() async throws {
+    func test_viewModel_loadDeliversErrorOnApiError() async throws {
         await withMainSerialExecutor {
             let mockAPI = StatePopulationAPIMock()
-            let stub = Population()
-            
             let sut = StatePopulationViewModel(api: mockAPI)
             var states = [ViewState<Population, AppError>]()
             
