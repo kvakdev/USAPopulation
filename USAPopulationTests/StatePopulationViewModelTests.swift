@@ -30,7 +30,11 @@ class StatePopulationAPIMock: StatePopulationAPIProtocol {
     
     func getPopulation() async throws -> Population {
         messages.append(.loadPopulation)
-
+        
+        if let stub = self.stub {
+            return stub
+        }
+        
         throw AppError.network
     }
     
@@ -65,6 +69,7 @@ class StatePopulationViewModel: ObservableObject {
         
         do {
             let population = try await self.api.getPopulation()
+            state = .loaded(population)
         } catch let error {
             if let err = error as? AppError {
                 state = .error(err)
@@ -98,7 +103,6 @@ final class StatePopulationViewModelTests: XCTestCase {
         await withMainSerialExecutor {
             let mockAPI = StatePopulationAPIMock()
             let stub = Population()
-            mockAPI.set(stub: stub)
             
             let sut = StatePopulationViewModel(api: mockAPI)
             var states = [ViewState<Population, AppError>]()
@@ -113,6 +117,28 @@ final class StatePopulationViewModelTests: XCTestCase {
             
             
             XCTAssertEqual(states, [.empty, .loading, .error(AppError.network)])
+        }
+    }
+    
+    func test_viewModel_deliversLoadedResult() async throws {
+        await withMainSerialExecutor {
+            let mockAPI = StatePopulationAPIMock()
+            let stub = Population()
+            mockAPI.set(stub: stub)
+            
+            let sut = StatePopulationViewModel(api: mockAPI)
+            var states = [ViewState<Population, AppError>]()
+            
+            sut.$state
+                .sink(receiveValue: { newValue in
+                states.append(newValue)
+            })
+            .store(in: &cancellables)
+            
+            await sut.onAppear()
+            
+            
+            XCTAssertEqual(states, [.empty, .loading, .loaded(stub)])
         }
     }
 }
