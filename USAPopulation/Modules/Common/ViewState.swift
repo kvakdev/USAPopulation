@@ -11,5 +11,4 @@ enum ViewState<Value: Equatable, Err: Equatable>: Equatable {
     case loading
     case loaded(Value)
     case error(Err)
-    case empty
 }

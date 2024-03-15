@@ -9,11 +9,10 @@ import Foundation
 
 class StatePopulationViewModel: ObservableObject {
     let api: StatePopulationAPIProtocol
-    @Published var state: ViewState<PopulationViewModel, AppError>
+    @Published var state: ViewState<PopulationViewModel, AppError>?
     
     init(api: StatePopulationAPIProtocol) {
         self.api = api
-        self.state = .empty
     }
     
     

@@ -59,7 +59,7 @@ final class StatePopulationViewModelTests: XCTestCase {
         await withMainSerialExecutor {
             let mockAPI = StatePopulationAPIMock()
             let sut = StatePopulationViewModel(api: mockAPI)
-            var states = [ViewState<PopulationViewModel, AppError>]()
+            var states = [ViewState<PopulationViewModel, AppError>?]()
             
             sut.$state
                 .sink(receiveValue: { newValue in
@@ -69,7 +69,7 @@ final class StatePopulationViewModelTests: XCTestCase {
             
             await sut.onAppear()
             
-            XCTAssertEqual(states, [.empty, .loading, .error(AppError.network)])
+            XCTAssertEqual(states, [nil, .loading, .error(AppError.network)])
         }
     }
     
@@ -80,7 +80,7 @@ final class StatePopulationViewModelTests: XCTestCase {
             
             let expectedValue = PopulationViewModel.makeWith(remote: .testValue)
             let sut = StatePopulationViewModel(api: mockAPI)
-            var states = [ViewState<PopulationViewModel, AppError>]()
+            var states = [ViewState<PopulationViewModel, AppError>?]()
             
             sut.$state
                 .sink(receiveValue: { newValue in
@@ -90,7 +90,7 @@ final class StatePopulationViewModelTests: XCTestCase {
             
             await sut.onAppear()
             
-            XCTAssertEqual(states, [.empty, .loading, .loaded(expectedValue)])
+            XCTAssertEqual(states, [nil, .loading, .loaded(expectedValue)])
         }
     }
     
@@ -100,7 +100,7 @@ final class StatePopulationViewModelTests: XCTestCase {
             let expectedValue = PopulationViewModel.makeWith(remote: .testValue)
             
             let sut = StatePopulationViewModel(api: mockAPI)
-            var states = [ViewState<PopulationViewModel, AppError>]()
+            var states = [ViewState<PopulationViewModel, AppError>?]()
             
             sut.$state
                 .sink(receiveValue: { newValue in
@@ -109,11 +109,11 @@ final class StatePopulationViewModelTests: XCTestCase {
             .store(in: &cancellables)
             
             await sut.onAppear()
-            XCTAssertEqual(states, [.empty, .loading, .error(.network)])
+            XCTAssertEqual(states, [nil, .loading, .error(.network)])
 
             mockAPI.set(stub: .testValue)
             await sut.handleRetry()
-            XCTAssertEqual(states, [.empty, .loading, .error(.network), .loading, .loaded(expectedValue)])
+            XCTAssertEqual(states, [nil, .loading, .error(.network), .loading, .loaded(expectedValue)])
         }
     }
 }
