@@ -32,6 +32,7 @@
 		CE7605782BA639CC0055BAC1 /* PreviewNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605772BA639CC0055BAC1 /* PreviewNetworkClient.swift */; };
 		CE7605792BA63A470055BAC1 /* StatePopulationSampleJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605512BA4FADD0055BAC1 /* StatePopulationSampleJSON.swift */; };
 		CE76057A2BA63A4A0055BAC1 /* YearlyPopulationSampleJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605562BA4FF300055BAC1 /* YearlyPopulationSampleJSON.swift */; };
+		CE76057C2BA642320055BAC1 /* StatePopulationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76057B2BA642320055BAC1 /* StatePopulationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		CE7605732BA5BAE50055BAC1 /* URLResponse+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Ext.swift"; sourceTree = "<group>"; };
 		CE7605752BA6395A0055BAC1 /* YearlyPopulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyPopulationView.swift; sourceTree = "<group>"; };
 		CE7605772BA639CC0055BAC1 /* PreviewNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewNetworkClient.swift; sourceTree = "<group>"; };
+		CE76057B2BA642320055BAC1 /* StatePopulationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatePopulationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				CE7605432BA4F2470055BAC1 /* StatePopulationViewModel.swift */,
+				CE76057B2BA642320055BAC1 /* StatePopulationView.swift */,
 				CE76054B2BA4F3FA0055BAC1 /* PopulationViewModel.swift */,
 				CE76054D2BA4F41E0055BAC1 /* StatePopulationAPIProtocol.swift */,
 			);
@@ -377,6 +380,7 @@
 				CE7605472BA4F28F0055BAC1 /* StatePopulationResponse.swift in Sources */,
 				CE7605782BA639CC0055BAC1 /* PreviewNetworkClient.swift in Sources */,
 				CE7605792BA63A470055BAC1 /* StatePopulationSampleJSON.swift in Sources */,
+				CE76057C2BA642320055BAC1 /* StatePopulationView.swift in Sources */,
 				CE7605442BA4F2470055BAC1 /* StatePopulationViewModel.swift in Sources */,
 				CE76054E2BA4F41E0055BAC1 /* StatePopulationAPIProtocol.swift in Sources */,
 				CE76054A2BA4F3BC0055BAC1 /* ViewState.swift in Sources */,

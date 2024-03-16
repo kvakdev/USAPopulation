@@ -16,6 +16,6 @@ struct OneStatePopulationViewModel: Equatable {
     let state: String
     let idYear: Int
     let year: String
-    let population: Int
+    let population: String
     let slugState: String
 }

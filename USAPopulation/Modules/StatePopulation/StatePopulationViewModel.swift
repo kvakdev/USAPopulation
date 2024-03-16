@@ -7,9 +7,10 @@
 
 import Foundation
 
-class StatePopulationViewModel: ObservableObject {
+@Observable
+class StatePopulationViewModel {
     let api: StatePopulationAPIProtocol
-    @Published var state: ViewState<PopulationViewModel, AppError>?
+    var state: ViewState<PopulationViewModel, AppError>?
     
     init(api: StatePopulationAPIProtocol) {
         self.api = api
@@ -42,13 +43,18 @@ class StatePopulationViewModel: ObservableObject {
 
 extension PopulationViewModel {
     static func makeWith(remote: StatePopulationResponse) -> PopulationViewModel {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        
         let items = remote.data.compactMap { oneItem in
-            OneStatePopulationViewModel(idState: oneItem.idState,
-                                        state: oneItem.state,
-                                        idYear: oneItem.idYear,
-                                        year: oneItem.year,
-                                        population: oneItem.population,
-                                        slugState: oneItem.slugState)
+            let populationString = nf.string(from: NSNumber(integerLiteral: oneItem.population)) ?? String(oneItem.population)
+            
+            return OneStatePopulationViewModel(idState: oneItem.idState,
+                                               state: oneItem.state,
+                                               idYear: oneItem.idYear,
+                                               year: oneItem.year,
+                                               population: populationString,
+                                               slugState: oneItem.slugState)
         }
         
         return PopulationViewModel(items: items)

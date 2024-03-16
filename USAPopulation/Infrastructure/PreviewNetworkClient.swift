@@ -26,3 +26,14 @@ extension PreviewNetworkClient: YearPopulationAPIProtocol {
         return try JSONDecoder().decode(YearlyPopulationResponse.self, from: sampleJSON)
     }
 }
+
+
+class FailingClient: YearPopulationAPIProtocol, StatePopulationAPIProtocol {
+    func getPopulation() async throws -> StatePopulationResponse {
+        throw AppError.network
+    }
+    
+    func getPopulation() async throws -> YearlyPopulationResponse {
+        throw AppError.network
+    }
+}
