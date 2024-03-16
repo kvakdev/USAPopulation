@@ -11,4 +11,5 @@ enum AppError: Error, Equatable {
     case network
     case decodingError
     case unknown(String)
+    case invalidURL(String)
 }
