@@ -24,23 +24,15 @@ class PopulationNetworkClient {
     }
     
     func fetchStatePopulation() async throws -> StatePopulationResponse {
-        let task = try await urlClient.getFrom(urlString: Constants.stateUrl)
-        let response = task.1
-        
-        guard response.isOK else {
-            //TODO: check the code and return related error
-            throw AppError.network
-        }
-        do {
-            let result = try JSONDecoder().decode(StatePopulationResponse.self, from: task.0)
-            return result
-        } catch {
-            throw AppError.decodingError
-        }
+        return try await fetchRemotePopulation(urlString: Constants.stateUrl)
     }
     
     func fetchYearlyPopulation() async throws -> YearlyPopulationResponse {
-        let task = try await urlClient.getFrom(urlString: Constants.nationUrl)
+        return try await fetchRemotePopulation(urlString: Constants.nationUrl)
+    }
+    
+    func fetchRemotePopulation<Value: Decodable>(urlString: String) async throws -> Value {
+        let task = try await urlClient.getFrom(urlString: urlString)
         let response = task.1
         
         guard response.isOK else {
@@ -48,7 +40,7 @@ class PopulationNetworkClient {
             throw AppError.network
         }
         do {
-            let result = try JSONDecoder().decode(YearlyPopulationResponse.self, from: task.0)
+            let result = try JSONDecoder().decode(Value.self, from: task.0)
             return result
         } catch {
             throw AppError.decodingError
