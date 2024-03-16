@@ -9,14 +9,6 @@ import XCTest
 @testable import USAPopulation
 import ConcurrencyExtras
 
-enum Constants {
-    static let stateUrl = "https://datausa.io/api/data?drilldowns=State&measures=Population&year=latest"
-}
-
-protocol URLClient {
-    func getFrom(urlString: String) async throws -> (Data, URLResponse)
-}
-
 class URLClientMock: URLClient {
     var wrongURL: URL?
     
@@ -28,36 +20,6 @@ class URLClientMock: URLClient {
         let urlRequest = URLRequest(url: resultURL)
         
         return try await URLSession.shared.data(for: urlRequest)
-    }
-}
-
-class PopulationNetworkClient {
-    let urlClient: URLClient
-    
-    init(urlClient: URLClient) {
-        self.urlClient = urlClient
-    }
-    
-    func fetchStatePopulation() async throws -> StatePopulationResponse {
-        let task = try await urlClient.getFrom(urlString: Constants.stateUrl)
-        let response = task.1
-        
-        guard response.isOK else {
-            //TODO: check the code and return related error
-            throw AppError.network
-        }
-        do {
-            let result = try JSONDecoder().decode(StatePopulationResponse.self, from: task.0)
-            return result
-        } catch {
-            throw AppError.decodingError
-        }
-    }
-}
-
-extension PopulationNetworkClient: StatePopulationAPIProtocol {
-    func getPopulation() async throws -> USAPopulation.StatePopulationResponse {
-        return try await fetchStatePopulation()
     }
 }
 
@@ -89,10 +51,4 @@ final class PopulationNetworkClienTests: XCTestCase {
         }
     }
 
-}
-
-extension URLResponse {
-    var isOK: Bool {
-        return (self as? HTTPURLResponse)?.statusCode == 200
-    }
 }

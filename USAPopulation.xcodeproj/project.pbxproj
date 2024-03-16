@@ -26,6 +26,8 @@
 		CE76055B2BA501450055BAC1 /* YearlyPopulationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76055A2BA501450055BAC1 /* YearlyPopulationViewModel.swift */; };
 		CE76055D2BA5033B0055BAC1 /* YearlyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE76055C2BA5033B0055BAC1 /* YearlyViewModelTests.swift */; };
 		CE76056F2BA5B6B40055BAC1 /* PopulationNetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605602BA5B18E0055BAC1 /* PopulationNetworkClientTests.swift */; };
+		CE7605712BA5BAB00055BAC1 /* PopulationNetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605702BA5BAB00055BAC1 /* PopulationNetworkClient.swift */; };
+		CE7605742BA5BAE50055BAC1 /* URLResponse+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605732BA5BAE50055BAC1 /* URLResponse+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		CE76055C2BA5033B0055BAC1 /* YearlyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YearlyViewModelTests.swift; sourceTree = "<group>"; };
 		CE7605602BA5B18E0055BAC1 /* PopulationNetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationNetworkClientTests.swift; sourceTree = "<group>"; };
 		CE7605662BA5B6AB0055BAC1 /* USAPopulationEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = USAPopulationEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE7605702BA5BAB00055BAC1 /* PopulationNetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulationNetworkClient.swift; sourceTree = "<group>"; };
+		CE7605732BA5BAE50055BAC1 /* URLResponse+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLResponse+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 		CE7605482BA4F3AC0055BAC1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				CE7605722BA5BAD50055BAC1 /* Extensions */,
 				CE7605492BA4F3BC0055BAC1 /* ViewState.swift */,
 				CE76054F2BA4F4350055BAC1 /* AppError.swift */,
 			);
@@ -191,6 +196,7 @@
 		CE76055E2BA5B13A0055BAC1 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				CE7605702BA5BAB00055BAC1 /* PopulationNetworkClient.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -210,6 +216,14 @@
 				CE7605602BA5B18E0055BAC1 /* PopulationNetworkClientTests.swift */,
 			);
 			path = USAPopulationEndToEndTests;
+			sourceTree = "<group>";
+		};
+		CE7605722BA5BAD50055BAC1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE7605732BA5BAE50055BAC1 /* URLResponse+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -348,11 +362,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE7605712BA5BAB00055BAC1 /* PopulationNetworkClient.swift in Sources */,
 				CE7605592BA4FFEB0055BAC1 /* YearlyPopulationResponse.swift in Sources */,
 				CE7605472BA4F28F0055BAC1 /* StatePopulationResponse.swift in Sources */,
 				CE7605442BA4F2470055BAC1 /* StatePopulationViewModel.swift in Sources */,
 				CE76054E2BA4F41E0055BAC1 /* StatePopulationAPIProtocol.swift in Sources */,
 				CE76054A2BA4F3BC0055BAC1 /* ViewState.swift in Sources */,
+				CE7605742BA5BAE50055BAC1 /* URLResponse+Ext.swift in Sources */,
 				CE76055B2BA501450055BAC1 /* YearlyPopulationViewModel.swift in Sources */,
 				CE7605502BA4F4350055BAC1 /* AppError.swift in Sources */,
 				CE1827832BA4C1E000C78506 /* AppDelegate.swift in Sources */,
