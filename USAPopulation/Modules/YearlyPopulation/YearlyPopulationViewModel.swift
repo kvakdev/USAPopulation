@@ -20,9 +20,10 @@ protocol YearPopulationAPIProtocol {
     func getPopulation() async throws -> YearlyPopulationResponse
 }
 
-class YearlyPopulationViewModel: ObservableObject {
+@Observable
+class YearlyPopulationViewModel {
     let api: YearPopulationAPIProtocol
-    @Published var state: ViewState<YearlyListViewModel, AppError>?
+    var state: ViewState<YearlyListViewModel, AppError>?
     
     init(api: YearPopulationAPIProtocol) {
         self.api = api
@@ -55,9 +56,13 @@ class YearlyPopulationViewModel: ObservableObject {
 
 extension YearlyListViewModel {
     static func makeWith(remote: YearlyPopulationResponse) -> YearlyListViewModel {
+        let nf = NumberFormatter()
+        nf.numberStyle = .decimal
+        
         let items = remote.data.compactMap { oneItem in
-            OneYearPopulationViewModel(year: oneItem.year,
-                                       population: String(oneItem.population) + " people")
+            let populationString = nf.string(from: NSNumber(integerLiteral: oneItem.population)) ?? String(oneItem.population)
+            return OneYearPopulationViewModel(year: oneItem.year,
+                                       population: populationString)
         }
         
         return YearlyListViewModel(items: items)
