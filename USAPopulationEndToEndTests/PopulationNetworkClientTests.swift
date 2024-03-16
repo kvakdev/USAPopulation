@@ -31,11 +31,7 @@ class URLClientMock: URLClient {
     }
 }
 
-class PopulationNetworkClient: StatePopulationAPIProtocol {
-    func getPopulation() async throws -> USAPopulation.StatePopulationResponse {
-        return try await fetchStatePopulation()
-    }
-    
+class PopulationNetworkClient {
     let urlClient: URLClient
     
     init(urlClient: URLClient) {
@@ -44,18 +40,24 @@ class PopulationNetworkClient: StatePopulationAPIProtocol {
     
     func fetchStatePopulation() async throws -> StatePopulationResponse {
         let task = try await urlClient.getFrom(urlString: Constants.stateUrl)
+        let response = task.1
         
-        if (task.1 as? HTTPURLResponse)?.statusCode == 200 {
-            do {
-                let result = try JSONDecoder().decode(StatePopulationResponse.self, from: task.0)
-                return result
-            } catch {
-                throw AppError.decodingError
-            }
-        } else {
+        guard response.isOK else {
             //TODO: check the code and return related error
             throw AppError.network
         }
+        do {
+            let result = try JSONDecoder().decode(StatePopulationResponse.self, from: task.0)
+            return result
+        } catch {
+            throw AppError.decodingError
+        }
+    }
+}
+
+extension PopulationNetworkClient: StatePopulationAPIProtocol {
+    func getPopulation() async throws -> USAPopulation.StatePopulationResponse {
+        return try await fetchStatePopulation()
     }
 }
 
@@ -87,4 +89,10 @@ final class PopulationNetworkClienTests: XCTestCase {
         }
     }
 
+}
+
+extension URLResponse {
+    var isOK: Bool {
+        return (self as? HTTPURLResponse)?.statusCode == 200
+    }
 }
