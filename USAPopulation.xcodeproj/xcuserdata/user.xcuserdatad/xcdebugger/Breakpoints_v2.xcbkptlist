@@ -3,4 +3,102 @@
    uuid = "9AAF0654-C4C9-4ECF-BB37-3F07EF8BF8FF"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4F7776BD-359D-42CC-9E3D-8E5DDB493AE8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "USAPopulationEndToEndTests/PopulationNetworkClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "test_fetches_and_parses_error()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "4F7776BD-359D-42CC-9E3D-8E5DDB493AE8 - 3962f1132e673f02"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Swift.MainActor @Sendable () async -&gt; () in USAPopulationEndToEndTests.PopulationNetworkClienTests.test_fetches_and_parses_error() async throws -&gt; ()"
+                  moduleName = "USAPopulationEndToEndTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Education/USAPopulation/USAPopulationEndToEndTests/PopulationNetworkClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  uuid = "4F7776BD-359D-42CC-9E3D-8E5DDB493AE8 - 3962f1132e673e3a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Swift.MainActor @Sendable () async -&gt; () in USAPopulationEndToEndTests.PopulationNetworkClienTests.test_fetches_and_parses_error() async throws -&gt; ()"
+                  moduleName = "USAPopulationEndToEndTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Education/USAPopulation/USAPopulationEndToEndTests/PopulationNetworkClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "176">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2E376E0F-08FE-4288-8BEC-4DD57B388A93"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "USAPopulationEndToEndTests/PopulationNetworkClientTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "test_fetches_and_parses_error()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2E376E0F-08FE-4288-8BEC-4DD57B388A93 - da1d138ffa56dec3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Swift.MainActor @Sendable () async -&gt; () in USAPopulationEndToEndTests.PopulationNetworkClienTests.test_fetches_and_parses_error() async throws -&gt; ()"
+                  moduleName = "USAPopulationEndToEndTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Education/USAPopulation/USAPopulationEndToEndTests/PopulationNetworkClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "77"
+                  endingLineNumber = "77"
+                  offsetFromSymbolStart = "212">
+               </Location>
+               <Location
+                  uuid = "2E376E0F-08FE-4288-8BEC-4DD57B388A93 - da1d138ffa56e1fb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Swift.MainActor @Sendable () async -&gt; () in USAPopulationEndToEndTests.PopulationNetworkClienTests.test_fetches_and_parses_error() async throws -&gt; ()"
+                  moduleName = "USAPopulationEndToEndTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/user/Education/USAPopulation/USAPopulationEndToEndTests/PopulationNetworkClientTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "212">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
