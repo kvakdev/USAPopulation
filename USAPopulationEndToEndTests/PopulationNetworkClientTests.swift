@@ -16,7 +16,7 @@ class URLClientMock: URLClient {
         guard let url = URL(string: urlString) else {
             throw AppError.invalidURL(urlString)
         }
-        var resultURL = wrongURL ?? url
+        let resultURL = wrongURL ?? url
         let urlRequest = URLRequest(url: resultURL)
         
         return try await URLSession.shared.data(for: urlRequest)
@@ -50,5 +50,15 @@ final class PopulationNetworkClienTests: XCTestCase {
             }
         }
     }
-
+    
+    func test_fetches_and_parses_yearly_correctly() async throws {
+        let sut = PopulationNetworkClient(urlClient: URLClientMock())
+        
+        try await withMainSerialExecutor {
+            let result = try await sut.fetchYearlyPopulation()
+            
+            XCTAssertNotNil(result)
+        }
+    }
+    
 }
