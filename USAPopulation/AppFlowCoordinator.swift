@@ -16,6 +16,9 @@ class AppFlowCoordinator {
     let stateNavController: UINavigationController = UINavigationController()
     let yearNavController: UINavigationController = UINavigationController()
     
+    //we can present whatever we want upon delegate actions
+    let tabbarController = UITabBarController()
+    
     init(window: UIWindow, diContainer: DIContainer) {
         self.window = window
         self.diContainer = diContainer
@@ -27,19 +30,20 @@ class AppFlowCoordinator {
         stateNavController.setViewControllers([
             UIHostingController(rootView: StatePopulationView(viewModel: StatePopulationViewModel(api: loader, delegate: self)))
         ], animated: false)
+        stateNavController.tabBarItem = UITabBarItem(title: "State", image: UIImage(systemName: "map.fill"), tag: 1)
+        stateNavController.navigationBar.prefersLargeTitles = true
+        
         yearNavController.setViewControllers([
             UIHostingController(rootView: YearlyPopulationView(viewModel: YearlyPopulationViewModel(api: loader, delegate: self)))
         ], animated: false)
+        yearNavController.tabBarItem = UITabBarItem(title: "Year", image: UIImage(systemName: "calendar"), tag: 2)
+        yearNavController.navigationBar.prefersLargeTitles = true
         
-        let tabbarController = UITabBarController()
         tabbarController.viewControllers = [
             stateNavController,
             yearNavController
         ]
-        stateNavController.tabBarItem = UITabBarItem(title: "State", image: UIImage(systemName: "map.fill"), tag: 1)
-        stateNavController.navigationBar.prefersLargeTitles = true
-        yearNavController.tabBarItem = UITabBarItem(title: "Year", image: UIImage(systemName: "calendar"), tag: 2)
-        
+       
         window.rootViewController = tabbarController
         
         window.makeKeyAndVisible()

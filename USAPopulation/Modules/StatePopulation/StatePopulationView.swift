@@ -36,10 +36,10 @@ struct StatePopulationView: View {
                 HStack {
                     Text(item.state.capitalized)
                         .font(.headline)
-                    Spacer()
                     Text("-")
                     Text(item.population)
                 }
+                .frame(width: .infinity, alignment: .center)
             }
         }
         .padding(.bottom)
@@ -63,12 +63,12 @@ struct StatePopulationView: View {
 
 #Preview("Loaded state") {
     NavigationStack {
-        StatePopulationView(viewModel: StatePopulationViewModel(api: PreviewNetworkClient()))
+        StatePopulationView(viewModel: StatePopulationViewModel(api: PreviewNetworkClient(), delegate: nil))
     }
 }
 
 #Preview("Error state") {
     NavigationStack {
-        StatePopulationView(viewModel: StatePopulationViewModel(api: FailingClient()))
+        StatePopulationView(viewModel: StatePopulationViewModel(api: FailingClient(), delegate: nil))
     }
 }
