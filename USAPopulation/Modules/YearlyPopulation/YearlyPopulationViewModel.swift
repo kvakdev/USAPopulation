@@ -30,15 +30,20 @@ class YearlyPopulationViewModel {
     }
     
     func onAppear() async {
+        guard state != .loading else { return }
+        
         await load()
     }
     
     func handleRetry() async {
+        guard state != .loading else { return }
+        
         await load()
     }
     
     @MainActor
     private func load() async {
+        debugPrint("\(#function) \(#file) ")
         state = .loading
         
         do {

@@ -19,7 +19,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        window.rootViewController = UIHostingController(rootView: Text("Hello app"))
+        let loader = PopulationNetworkClient(urlClient: URLClientImpl())
+        
+
+        window.rootViewController = UIHostingController(rootView:
+                                                            HomeTabView(viewModel: HomeTabViewModel(),
+                                                                        makeLeftView:
+                                                                            NavigationStack {
+            StatePopulationView(viewModel: StatePopulationViewModel(api: loader))
+        },
+                                                                        makeRightView:
+                                                                            NavigationStack {
+            YearlyPopulationView(viewModel: YearlyPopulationViewModel(api: loader))
+        }
+            )
+                                                        
+        )
         window.makeKeyAndVisible()
         self.window = window
     }

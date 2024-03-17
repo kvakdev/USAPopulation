@@ -16,43 +16,61 @@ struct YearlyPopulationView: View {
             case .loading, .none:
                 ProgressView()
             case .loaded(let value):
-                List {
-                    ForEach(value.items, id: \.year) { item in
-                        HStack(spacing: 0) {
-                            Text(item.year)
-                                .font(.headline)
-                                .frame(width: 50, alignment: .leading)
-                            
-                            Text("-")
-                                .padding(.horizontal)
-                            
-                            Text(item.population)
-                            Spacer()
-                        }
-                    }
-                }
+               makeListView(value: value)
             case .error(let err):
-                VStack {
-                    Text("Error occured: \(err.localizedDescription)")
-                    Button(action: {
-                        Task {
-                            await viewModel.handleRetry()
-                        }
-                    }, label: {
-                        Text("Try again")
-                    })
+               makeRetryButtton(err)
+            }
+        }
+        .onFirstAppear {
+            Task {
+                await viewModel.onAppear()
+            }
+        }
+        .navigationTitle("US Population by year")
+    }
+    
+    @ViewBuilder
+    func makeListView(value: YearlyListViewModel) -> some View {
+        List {
+            ForEach(value.items, id: \.year) { item in
+                HStack(spacing: 0) {
+                    Text(item.year)
+                        .font(.headline)
+                        .frame(width: 50, alignment: .leading)
+                    
+                    Text("-")
+                        .padding(.horizontal)
+                    
+                    Text(item.population)
+                    Spacer()
                 }
             }
         }
-        .task {
-            await viewModel.onAppear()
+    }
+    
+    @ViewBuilder
+    func makeRetryButtton(_ err: AppError) -> some View {
+        VStack {
+            Text("Error occured: \(err.readableDescription)")
+            Button(action: {
+                Task {
+                    await viewModel.handleRetry()
+                }
+            }, label: {
+                Text("Try again")
+            })
         }
-        .navigationTitle("US Population")
     }
 }
 
-#Preview {
+#Preview("Loaded") {
     NavigationStack {
         YearlyPopulationView(viewModel: YearlyPopulationViewModel(api: PreviewNetworkClient()))
+    }
+}
+
+#Preview("Failure") {
+    NavigationStack {
+        YearlyPopulationView(viewModel: YearlyPopulationViewModel(api: FailingClient()))
     }
 }

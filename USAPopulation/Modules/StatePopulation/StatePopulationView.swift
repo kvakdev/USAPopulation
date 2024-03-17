@@ -21,8 +21,10 @@ struct StatePopulationView: View {
                 makeRetryButton(err: err)
             }
         }
-        .task {
-            await viewModel.onAppear()
+        .onFirstAppear {
+            Task {
+                await viewModel.onAppear()
+            }
         }
         .navigationTitle("US Population by state")
     }

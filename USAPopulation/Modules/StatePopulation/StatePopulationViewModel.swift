@@ -17,15 +17,22 @@ class StatePopulationViewModel {
     }
     
     func onAppear() async {
+        guard state != .loading else { return }
+        
         await load()
     }
     
     func handleRetry() async {
+        guard state != .loading else { return }
+        
         await load()
     }
     
     @MainActor
     private func load() async {
+        guard state != .loading else { return }
+        debugPrint("\(#function) \(#file) ")
+        
         state = .loading
         
         do {
