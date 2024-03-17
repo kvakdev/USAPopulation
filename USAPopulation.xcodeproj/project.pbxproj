@@ -37,6 +37,8 @@
 		CE7605812BA7732F0055BAC1 /* HomeTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605802BA7732F0055BAC1 /* HomeTabViewModel.swift */; };
 		CE7605832BA778180055BAC1 /* URLClientImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7605822BA778180055BAC1 /* URLClientImpl.swift */; };
 		CECCD0B32BA77C8700FE37C6 /* OnFirstAppear.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCD0B22BA77C8700FE37C6 /* OnFirstAppear.swift */; };
+		CECCD0B52BA77E6300FE37C6 /* AppFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCD0B42BA77E6300FE37C6 /* AppFlowCoordinator.swift */; };
+		CECCD0B72BA7910D00FE37C6 /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECCD0B62BA7910D00FE37C6 /* DIContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		CE7605802BA7732F0055BAC1 /* HomeTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewModel.swift; sourceTree = "<group>"; };
 		CE7605822BA778180055BAC1 /* URLClientImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLClientImpl.swift; sourceTree = "<group>"; };
 		CECCD0B22BA77C8700FE37C6 /* OnFirstAppear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnFirstAppear.swift; sourceTree = "<group>"; };
+		CECCD0B42BA77E6300FE37C6 /* AppFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFlowCoordinator.swift; sourceTree = "<group>"; };
+		CECCD0B62BA7910D00FE37C6 /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,8 @@
 			children = (
 				CE1827822BA4C1E000C78506 /* AppDelegate.swift */,
 				CE1827842BA4C1E000C78506 /* SceneDelegate.swift */,
+				CECCD0B42BA77E6300FE37C6 /* AppFlowCoordinator.swift */,
+				CECCD0B62BA7910D00FE37C6 /* DIContainer.swift */,
 				CE7605412BA4F2260055BAC1 /* Modules */,
 				CE7605482BA4F3AC0055BAC1 /* Common */,
 				CE7605452BA4F24E0055BAC1 /* Domain */,
@@ -402,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE76057A2BA63A4A0055BAC1 /* YearlyPopulationSampleJSON.swift in Sources */,
+				CECCD0B72BA7910D00FE37C6 /* DIContainer.swift in Sources */,
 				CE7605712BA5BAB00055BAC1 /* PopulationNetworkClient.swift in Sources */,
 				CE7605832BA778180055BAC1 /* URLClientImpl.swift in Sources */,
 				CE7605762BA6395A0055BAC1 /* YearlyPopulationView.swift in Sources */,
@@ -421,6 +428,7 @@
 				CE7605502BA4F4350055BAC1 /* AppError.swift in Sources */,
 				CE1827832BA4C1E000C78506 /* AppDelegate.swift in Sources */,
 				CE1827852BA4C1E000C78506 /* SceneDelegate.swift in Sources */,
+				CECCD0B52BA77E6300FE37C6 /* AppFlowCoordinator.swift in Sources */,
 				CE76054C2BA4F3FA0055BAC1 /* PopulationViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,33 +10,19 @@ import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var window: UIWindow?
-
+    private var coordinator: AppFlowCoordinator!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
    
         guard let windowScene = scene as? UIWindowScene else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        
-        let loader = PopulationNetworkClient(urlClient: URLClientImpl())
-        
-
-        window.rootViewController = UIHostingController(rootView:
-                                                            HomeTabView(viewModel: HomeTabViewModel(),
-                                                                        makeLeftView:
-                                                                            NavigationStack {
-            StatePopulationView(viewModel: StatePopulationViewModel(api: loader))
-        },
-                                                                        makeRightView:
-                                                                            NavigationStack {
-            YearlyPopulationView(viewModel: YearlyPopulationViewModel(api: loader))
-        }
-            )
-                                                        
+        let container = DIContainer(
+            makePopulationAPI: { PopulationNetworkClient(urlClient: URLClientImpl()) }
         )
-        window.makeKeyAndVisible()
-        self.window = window
+        self.coordinator = AppFlowCoordinator(window: window, diContainer: container)
+        self.coordinator.start()
     }
+    
 }
 

@@ -42,6 +42,6 @@ struct HomeTabView<LeftView: View, RightView: View>: View {
 
 #Preview {
     HomeTabView(viewModel: HomeTabViewModel(),
-                makeLeftView: StatePopulationView(viewModel: StatePopulationViewModel(api: PreviewNetworkClient())),
-                makeRightView: YearlyPopulationView(viewModel: YearlyPopulationViewModel(api: PreviewNetworkClient())))
+                makeLeftView: StatePopulationView(viewModel: StatePopulationViewModel(api: PreviewNetworkClient(), delegate: nil)),
+                makeRightView: YearlyPopulationView(viewModel: YearlyPopulationViewModel(api: PreviewNetworkClient(), delegate: nil)))
 }

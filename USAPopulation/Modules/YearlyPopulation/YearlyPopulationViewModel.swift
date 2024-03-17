@@ -20,13 +20,17 @@ protocol YearPopulationAPIProtocol {
     func getPopulation() async throws -> YearlyPopulationResponse
 }
 
+protocol YearlyPopulationViewModelDelegate: AnyObject {}
+
 @Observable
 class YearlyPopulationViewModel {
-    let api: YearPopulationAPIProtocol
+    private weak var delegate: YearlyPopulationViewModelDelegate?
+    private let api: YearPopulationAPIProtocol
     var state: ViewState<YearlyListViewModel, AppError>?
     
-    init(api: YearPopulationAPIProtocol) {
+    init(api: YearPopulationAPIProtocol, delegate: YearlyPopulationViewModelDelegate? = nil) {
         self.api = api
+        self.delegate = delegate
     }
     
     func onAppear() async {
@@ -43,7 +47,7 @@ class YearlyPopulationViewModel {
     
     @MainActor
     private func load() async {
-        debugPrint("\(#function) \(#file) ")
+        guard state != .loading else { return }
         state = .loading
         
         do {

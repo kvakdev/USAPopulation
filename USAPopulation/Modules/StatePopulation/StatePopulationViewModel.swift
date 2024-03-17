@@ -7,13 +7,17 @@
 
 import Foundation
 
+protocol StatePopulationViewModelDelegate: AnyObject {}
+
 @Observable
 class StatePopulationViewModel {
-    let api: StatePopulationAPIProtocol
+    private weak var delegate: StatePopulationViewModelDelegate?
+    private let api: StatePopulationAPIProtocol
     var state: ViewState<PopulationViewModel, AppError>?
     
-    init(api: StatePopulationAPIProtocol) {
+    init(api: StatePopulationAPIProtocol, delegate: StatePopulationViewModelDelegate? = nil) {
         self.api = api
+        self.delegate = delegate
     }
     
     func onAppear() async {
@@ -31,7 +35,6 @@ class StatePopulationViewModel {
     @MainActor
     private func load() async {
         guard state != .loading else { return }
-        debugPrint("\(#function) \(#file) ")
         
         state = .loading
         
