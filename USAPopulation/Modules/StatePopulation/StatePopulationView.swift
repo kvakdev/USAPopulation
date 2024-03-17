@@ -16,7 +16,28 @@ struct StatePopulationView: View {
             case .loading, .none:
                 ProgressView()
             case .loaded(let value):
-                makeListView(value: value)
+                GeometryReader(content: { geometry in
+                    if geometry.size.width > 500 {
+                        ScrollView {
+                            LazyVGrid(columns: [GridItem(.flexible(minimum: 200)), GridItem(.flexible(minimum: 200))], content: {
+                                ForEach(value.items, id: \.state) { item in
+                                    HStack {
+                                        Text(item.state.capitalized)
+                                            .font(.title)
+                                            .bold()
+                                        Text("-")
+                                        Text(item.population)
+                                            .font(.title2)
+                                        Spacer()
+                                    }
+                                    .padding(.leading, 32)
+                                }
+                            })
+                        }
+                    } else {
+                        makeListView(value: value)
+                    }
+                })
             case .error(let err):
                 makeRetryButton(err: err)
             }
@@ -33,17 +54,22 @@ struct StatePopulationView: View {
     func makeListView(value: PopulationViewModel) -> some View {
         List {
             ForEach(value.items, id: \.state) { item in
-                HStack {
-                    Text(item.state.capitalized)
-                        .font(.headline)
-                    Text("-")
-                    Text(item.population)
-                }
-                .frame(width: .infinity, alignment: .center)
+                makeRow(item)
             }
         }
         .padding(.bottom)
         .ignoresSafeArea(edges: .bottom)
+    }
+    
+    @ViewBuilder
+    func makeRow(_ item: OneStatePopulationViewModel) -> some View {
+        HStack {
+            Text(item.state.capitalized)
+                .font(.headline)
+            Text("-")
+            Text(item.population)
+            Spacer()
+        }
     }
     
     @ViewBuilder
