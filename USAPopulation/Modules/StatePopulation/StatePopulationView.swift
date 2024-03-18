@@ -18,22 +18,7 @@ struct StatePopulationView: View {
             case .loaded(let value):
                 GeometryReader(content: { geometry in
                     if geometry.size.width > 500 {
-                        ScrollView {
-                            LazyVGrid(columns: [GridItem(.flexible(minimum: 200)), GridItem(.flexible(minimum: 200))], content: {
-                                ForEach(value.items, id: \.state) { item in
-                                    HStack {
-                                        Text(item.state.capitalized)
-                                            .font(.title)
-                                            .bold()
-                                        Text("-")
-                                        Text(item.population)
-                                            .font(.title2)
-                                        Spacer()
-                                    }
-                                    .padding(.leading, 32)
-                                }
-                            })
-                        }
+                        makeGridView(value: value)
                     } else {
                         makeListView(value: value)
                     }
@@ -48,6 +33,26 @@ struct StatePopulationView: View {
             }
         }
         .navigationTitle("US Population by state")
+    }
+    
+    @ViewBuilder
+    func makeGridView(value: PopulationViewModel) -> some View {
+        ScrollView {
+            LazyVGrid(columns: [GridItem(.flexible(minimum: 200)), GridItem(.flexible(minimum: 200))], content: {
+                ForEach(value.items, id: \.state) { item in
+                    HStack {
+                        Text(item.state.capitalized)
+                            .font(.title)
+                            .bold()
+                        Text("-")
+                        Text(item.population)
+                            .font(.title2)
+                        Spacer()
+                    }
+                    .padding(.leading, 32)
+                }
+            })
+        }
     }
     
     @ViewBuilder
