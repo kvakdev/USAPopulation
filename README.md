@@ -7,6 +7,7 @@
 
 ## Tests
 ### There are test targets to run unit tests and end to end tests.
+### Two targets are used to illustrate how one would separate long running tests from instant unit tests. Ideally one should also add a CI scheme to run both.
 ### Testability is reached through dependency injection
 ### ViewModels are tested.
 ### NetworkClient is tested.
