@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct YearlyPopulationView: View {
-    var viewModel: YearlyPopulationViewModel
+    @ObservedObject var viewModel: YearlyPopulationViewModel
     
     var body: some View {
         Group {

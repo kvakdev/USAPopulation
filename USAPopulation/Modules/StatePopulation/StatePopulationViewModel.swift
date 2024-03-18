@@ -9,11 +9,10 @@ import Foundation
 
 protocol StatePopulationViewModelDelegate: AnyObject {}
 
-@Observable
-class StatePopulationViewModel {
+class StatePopulationViewModel: ObservableObject {
     private weak var delegate: StatePopulationViewModelDelegate?
     private let api: StatePopulationAPIProtocol
-    var state: ViewState<PopulationViewModel, AppError>?
+    @Published var state: ViewState<PopulationViewModel, AppError>?
     
     init(api: StatePopulationAPIProtocol, delegate: StatePopulationViewModelDelegate? = nil) {
         self.api = api

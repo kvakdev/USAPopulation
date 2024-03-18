@@ -22,11 +22,11 @@ protocol YearPopulationAPIProtocol {
 
 protocol YearlyPopulationViewModelDelegate: AnyObject {}
 
-@Observable
-class YearlyPopulationViewModel {
+
+class YearlyPopulationViewModel: ObservableObject {
     private weak var delegate: YearlyPopulationViewModelDelegate?
     private let api: YearPopulationAPIProtocol
-    var state: ViewState<YearlyListViewModel, AppError>?
+    @Published var state: ViewState<YearlyListViewModel, AppError>?
     
     init(api: YearPopulationAPIProtocol, delegate: YearlyPopulationViewModelDelegate? = nil) {
         self.api = api
