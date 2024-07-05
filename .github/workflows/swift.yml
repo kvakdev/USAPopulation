@@ -21,15 +21,9 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -switch /Applications/Xcode_15.4.app
 
-      - name: Set Default Scheme
-        run: |
-          scheme_list=$(xcodebuild -list -json | tr -d "\n")
-          default=$(echo $scheme_list | ruby -e "require 'json'; puts JSON.parse(STDIN.gets)['project']['targets'][0]")
-          echo $default | cat >default
-          echo Using default scheme: $default
       - name: Build and Test
         env:
           scheme: ${{ 'default' }}
           platform: ${{ 'iOS Simulator' }}
-        run: xcodebuild clean build test -project USAPopulation/USAPopulation.xcodeproj -scheme USAPopulationTests
+        run: xcodebuild clean build test -project USAPopulation/USAPopulation.xcodeproj -scheme "USAPopulationTests" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 15 Pro,OS=17.5" ONLY_ACTIVE_ARCH=YES
 
